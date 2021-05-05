@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "virtual-scroller",
+      "description": "A component with a title and an action counter",
+      "properties": [],
+      "events": [],
+      "slots": [],
+      "cssProperties": []
+    }
+  ]
+}

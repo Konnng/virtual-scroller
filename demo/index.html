@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+    .item {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <script type="module" src="../dist/src/VirtualScroller.js"></script>
+
+  <div id="demo">
+    <virtual-scroller>
+      <div slot="loading">Loading...</div>
+      <div class="item">${data.id} - ${data.title}</div>
+    </virtual-scroller>
+  </div>
+
+  <script>
+    async function fetchData() {
+      await customElements.whenDefined('virtual-scroller')
+
+      const element = document.querySelector('virtual-scroller')
+      const response = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json()
+
+      element.items = response
+    }
+
+    setTimeout(() => fetchData(), 1000)
+  </script>
+
+  <!-- <script type="module">
+    import { html, render } from 'lit-html';
+    import '../dist/virtual-scroller.js';
+
+    async function fetchData() {
+      const element = document.querySelector('virtual-scroller')
+      const response = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json()
+
+      element.items = response
+    }
+
+    render(
+      html`
+        <virtual-scroller>
+          <div slot="loading">Loading...</div>
+          <div>Item</div>
+        </virtual-scroller>
+      `,
+      document.querySelector('#demo')
+    );
+  </script> -->
+</body>
+</html>
